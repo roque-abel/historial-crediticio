@@ -1,4 +1,4 @@
-package com.usuario.reporteCrediticio;
+package com.usuario.prosesor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
