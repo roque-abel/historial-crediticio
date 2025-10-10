@@ -14,7 +14,8 @@ import java.time.LocalDate;
 @Builder
 @Valid
 public class ClienteRequest {
-    @NotBlank(message = "El id es obligatorio")
+    @NotNull(message = "El codigo postal eso obligatorio")
+    @Digits(integer = 9, fraction = 0, message = "El código postal debe tener 5 dígitos")
     private Integer clienteId;
 
     @NotBlank(message = "El nombre es obligatorio")
@@ -23,7 +24,7 @@ public class ClienteRequest {
 
     @NotBlank(message = "Los apellidos son obligatorios")
     @Size(max = 100, message = "Los apellidos no pueden exceder 100 caracteres")
-    private String apelldios;
+    private String apellidos;
 
     @NotBlank(message = "La colonia es obligatoria")
     @Size(max = 100, message = "La colonia no puede exceder 100 caracteres")
