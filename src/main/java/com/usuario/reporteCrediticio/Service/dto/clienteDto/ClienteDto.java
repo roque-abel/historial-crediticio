@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ClienteDto {
+    private Integer clienteId;
     private InformacionPersonalDto informacionPersonalDto;
     private DireccionDto direccionDto;
     private IdentificacionDto identificacionDto;

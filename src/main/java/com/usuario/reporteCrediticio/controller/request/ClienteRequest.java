@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ClienteRequest {
+    private Integer clienteId;
     private InformacionPersonalRequest informacionPersonalRequest;
     private DireccionRequest direccionRequest;
     private IdentificacionRequest identificacionRequest;

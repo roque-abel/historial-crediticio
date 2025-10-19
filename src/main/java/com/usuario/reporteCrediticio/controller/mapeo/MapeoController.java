@@ -20,6 +20,7 @@ public class MapeoController {
         IdentificacionDto identificacionDto = this.identificacionRequestToDto(clienteRequest.getIdentificacionRequest());
 
         ClienteDto.ClienteDtoBuilder clienteDtoBuilder = ClienteDto.builder();
+        clienteDtoBuilder.clienteId(clienteRequest.getClienteId());
         clienteDtoBuilder.informacionPersonalDto(informacionPersonalDto);
         clienteDtoBuilder.direccionDto(direccionDto);
         clienteDtoBuilder.identificacionDto(identificacionDto);

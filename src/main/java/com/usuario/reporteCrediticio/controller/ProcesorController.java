@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProcesorController {
     @Autowired
     private MapeoController mapeo;
+    @Autowired
     private ProcesorService service;
 
     @PostMapping("v1/procesor")
     public ResponseEntity<String> generarReporte( @RequestBody ClienteRequest request){
         ClienteDto dto = this.mapeo.clienteRequestToDto(request);
-        this.service
+        this.service.generarReporte();
     }
 
 }
