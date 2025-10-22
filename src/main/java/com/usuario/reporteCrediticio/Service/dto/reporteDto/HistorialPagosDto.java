@@ -11,10 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ScoreCrediticioDto {
-    private Integer puntaje;
-    private String escala;
-    private Integer percentil;
-    private String interpretacion;
-    private List<String> factoresInfluencia;
+public class HistorialPagosDto {
+    private List<PeriodoDto> periodos;
+    private String leyenda;
 }

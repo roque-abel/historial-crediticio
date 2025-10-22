@@ -5,16 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
+import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ScoreCrediticioDto {
-    private Integer puntaje;
-    private String escala;
-    private Integer percentil;
-    private String interpretacion;
-    private List<String> factoresInfluencia;
+public class ConsultaRealizadaDto {
+    private LocalDate fecha;
+    private String institucion;
+    private String tipoConsulta;
+    private String motivo;
 }

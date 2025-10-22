@@ -4,17 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ScoreCrediticioDto {
-    private Integer puntaje;
-    private String escala;
-    private Integer percentil;
-    private String interpretacion;
-    private List<String> factoresInfluencia;
+public class AlertaDto {
+    private String ripo;
+    private String descripcion;
+    private String nivel;
+    private LocalDate fechaGeneracion;
 }

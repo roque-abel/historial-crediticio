@@ -5,14 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ReporteCreditoDto {
-    private Integer numeroReporte;
-    private Date fechaEmision;
-    private String tipoReporte;
-    private Double version;
+public class CreditoHipotecarioDto {
+    private Integer totalCuentas;
+    private Integer lineaTotal;
+    private Double saldoTotal;
 }
