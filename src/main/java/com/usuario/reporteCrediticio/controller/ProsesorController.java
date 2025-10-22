@@ -1,6 +1,7 @@
 package com.usuario.reporteCrediticio.controller;
 
-import com.usuario.reporteCrediticio.Service.ProcesorService;
+import com.usuario.reporteCrediticio.Service.ProsesorService;
+import com.usuario.reporteCrediticio.Service.dto.ContenedorReporteCreditoDto;
 import com.usuario.reporteCrediticio.Service.dto.clienteDto.ClienteDto;
 import com.usuario.reporteCrediticio.controller.mapeo.MapeoController;
 import com.usuario.reporteCrediticio.controller.request.ClienteRequest;
@@ -14,16 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class ProcesorController {
+public class ProsesorController {
     @Autowired
     private MapeoController mapeo;
     @Autowired
-    private ProcesorService service;
+    private ProsesorService service;
 
     @PostMapping("v1/procesor")
-    public ResponseEntity<String> generarReporte( @RequestBody ClienteRequest request){
-        ClienteDto dto = this.mapeo.clienteRequestToDto(request);
-        this.service.generarReporte();
+    public ResponseEntity<ContenedorReporteCreditoDto> generarReporte( @RequestBody ClienteRequest request){
+        ClienteDto clienteDtodto = this.mapeo.clienteRequestToDto(request);
+        ContenedorReporteCreditoDto contenedorReporteCreditoDto = this.service.generarReporte(clienteDtodto);
+        return  ResponseEntity.ok(contenedorReporteCreditoDto);
     }
 
 }
