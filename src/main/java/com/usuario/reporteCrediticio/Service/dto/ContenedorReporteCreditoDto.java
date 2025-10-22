@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ContenedorReporteCreditoDto {
+    private Integer clienteId;
+    private String clienteName;
     private ReporteCrediticioDto reporteCredito;
     private ResumenGeneralDto resumenGeneral;
     private ScoreCrediticioDto scoreCrediticio;

@@ -17,7 +17,7 @@ public class HttpBuroGateway implements ProsesorGateWay {
 
     @Override
     public ContenedorReporteCreditoDto generarReportCred(ClienteDto dto) {
-        String url = "http://127.0.0.1:3000/v1/reporte-crediticio/{id}";
+        String url = "http://127.0.0.1:3000/v1/reporte/{id}";
         ContenedorReporteCreditoDto contenedorReporteCreditoDto = this.restTemplate.getForObject(url, ContenedorReporteCreditoDto.class, dto.getClienteId());
         log.info("ContenedorReporteCreditoDto: {}", contenedorReporteCreditoDto);
         return contenedorReporteCreditoDto;
