@@ -13,5 +13,5 @@ import java.time.LocalDate;
 public class IdentificacionRequest {
     private String rfc;
     private String curp;
-    private LocalDate fechaDeNacimiento;
+    private LocalDate fechaNacimiento;
 }

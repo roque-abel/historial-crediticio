@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class InformacionPersonalDto {
-    private String nombre;
-    private String apellidoParteno;
-    private String apellidoMaterno;
+    private Integer id;
+    private NombreDto nombre;
+    private DireccionDto direccion;
+    private IdentificacionDto identificacion;
 }

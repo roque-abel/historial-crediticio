@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class MetadataDto {
-    private Integer numeroReporte;
+    private String numeroReporte;
     private Date fechaEmision;
     private String tipoReporte;
     private Double version;

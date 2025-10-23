@@ -1,7 +1,7 @@
 package com.usuario.reporteCrediticio.Service;
 
-import com.usuario.reporteCrediticio.Service.dto.ContenedorReporteCreditoDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.ClienteDto;
+import com.usuario.reporteCrediticio.Service.dto.ReporteCreditoDto;
+import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
 import com.usuario.reporteCrediticio.infrastructure.gateway.ProsesorGateWay;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ public class ProsesorService {
     @Autowired
     private ProsesorGateWay prosesorGateWay;
 
-    public ContenedorReporteCreditoDto generarReporte(ClienteDto dto) {
-        ContenedorReporteCreditoDto reporteCreditoDto =  this.prosesorGateWay.generarReportCred(dto);
+    public ReporteCreditoDto generarReporte(InformacionPersonalDto dto) {
+        ReporteCreditoDto reporteCreditoDto =  this.prosesorGateWay.generarReportCred(dto);
         return reporteCreditoDto;
     }
 

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class AlertaDto {
-    private String ripo;
+    private String tipo;
     private String descripcion;
     private String nivel;
     private LocalDate fechaGeneracion;

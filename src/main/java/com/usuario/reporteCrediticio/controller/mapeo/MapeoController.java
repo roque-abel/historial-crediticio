@@ -1,30 +1,30 @@
 package com.usuario.reporteCrediticio.controller.mapeo;
 
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.ClienteDto;
 import com.usuario.reporteCrediticio.Service.dto.clienteDto.DireccionDto;
 import com.usuario.reporteCrediticio.Service.dto.clienteDto.IdentificacionDto;
 import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
-import com.usuario.reporteCrediticio.controller.request.ClienteRequest;
+import com.usuario.reporteCrediticio.Service.dto.clienteDto.NombreDto;
 import com.usuario.reporteCrediticio.controller.request.DireccionRequest;
 import com.usuario.reporteCrediticio.controller.request.IdentificacionRequest;
 import com.usuario.reporteCrediticio.controller.request.InformacionPersonalRequest;
+import com.usuario.reporteCrediticio.controller.request.NombreRequest;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MapeoController {
 
-    public ClienteDto clienteRequestToDto(ClienteRequest clienteRequest){
+    public InformacionPersonalDto informacionPersonalRequestToDto(InformacionPersonalRequest inforDto){
 
-        InformacionPersonalDto informacionPersonalDto = this.informacionPersonalRequestToDto(clienteRequest.getInformacionPersonalRequest());
-        DireccionDto direccionDto = this.direccionRequestToDto(clienteRequest.getDireccionRequest());
-        IdentificacionDto identificacionDto = this.identificacionRequestToDto(clienteRequest.getIdentificacionRequest());
+        NombreDto nombredto = this.nombreRequestToDto(inforDto.getNombre());
+        DireccionDto direccionDto = this.direccionRequestToDto(inforDto.getDireccion());
+        IdentificacionDto identificacionDto = this.identificacionRequestToDto(inforDto.getIdentificacion());
 
-        ClienteDto.ClienteDtoBuilder clienteDtoBuilder = ClienteDto.builder();
-        clienteDtoBuilder.clienteId(clienteRequest.getClienteId());
-        clienteDtoBuilder.informacionPersonalDto(informacionPersonalDto);
-        clienteDtoBuilder.direccionDto(direccionDto);
-        clienteDtoBuilder.identificacionDto(identificacionDto);
-        return clienteDtoBuilder.build();
+        InformacionPersonalDto.InformacionPersonalDtoBuilder informacionPersonalDtoBuilder = InformacionPersonalDto.builder();
+        informacionPersonalDtoBuilder.id(inforDto.getId());
+        informacionPersonalDtoBuilder.nombre(nombredto);
+        informacionPersonalDtoBuilder.direccion(direccionDto);
+        informacionPersonalDtoBuilder.identificacion(identificacionDto);
+        return informacionPersonalDtoBuilder.build();
 
     }
 
@@ -35,6 +35,7 @@ public class MapeoController {
         direccionDtoBuilder.colonia(direccionRequest.getColonia());
         direccionDtoBuilder.ciudad(direccionRequest.getCiudad());
         direccionDtoBuilder.estado(direccionRequest.getEstado());
+        direccionDtoBuilder.codigoPostal(direccionRequest.getCodigoPostal());
         return direccionDtoBuilder.build();
     }
 
@@ -42,16 +43,16 @@ public class MapeoController {
         IdentificacionDto.IdentificacionDtoBuilder identificacionDtoBuilder = IdentificacionDto.builder();
         identificacionDtoBuilder.rfc(identificacionRequest.getRfc());
         identificacionDtoBuilder.curp(identificacionRequest.getCurp());
-        identificacionDtoBuilder.fechaDeNacimiento(identificacionRequest.getFechaDeNacimiento());
+        identificacionDtoBuilder.fechaNacimiento(identificacionRequest.getFechaNacimiento());
         return identificacionDtoBuilder.build();
     }
 
-    private InformacionPersonalDto informacionPersonalRequestToDto(InformacionPersonalRequest InformacionPersonalRequest){
-        InformacionPersonalDto.InformacionPersonalDtoBuilder informacionPersonalDtoBuilder = InformacionPersonalDto.builder();
-        informacionPersonalDtoBuilder.nombre(InformacionPersonalRequest.getNombre());
-        informacionPersonalDtoBuilder.apellidoParteno(InformacionPersonalRequest.getApellidoParteno());
-        informacionPersonalDtoBuilder.apellidoMaterno(InformacionPersonalRequest.getApellidoMaterno());
-        return informacionPersonalDtoBuilder.build();
+    private NombreDto nombreRequestToDto(NombreRequest nombrerequest){
+        NombreDto.NombreDtoBuilder nombreDtoBuilder = NombreDto.builder();
+        nombreDtoBuilder.nombre(nombrerequest.getNombre());
+        nombreDtoBuilder.apellidoPaterno(nombrerequest.getApellidoPaterno());
+        nombreDtoBuilder.apellidoMaterno(nombrerequest.getApellidoMaterno());
+        return nombreDtoBuilder.build();
 
     }
 

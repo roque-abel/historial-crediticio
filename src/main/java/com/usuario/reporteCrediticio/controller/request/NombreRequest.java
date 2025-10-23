@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class InformacionPersonalRequest {
-    private Integer id;
-    private NombreRequest nombre;
-    private DireccionRequest direccion;
-    private IdentificacionRequest identificacion;
+public class NombreRequest {
+    private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
 }

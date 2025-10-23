@@ -13,5 +13,4 @@ public class ResumenPorTipoCreditoDto {
     private TarjetaCreditoDto tarjetaCredito;
     private CreditoAutomotrizDto creditoAutomotriz;
     private CreditoHipotecarioDto creditoHipotecario;
-
 }

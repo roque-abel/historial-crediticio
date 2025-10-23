@@ -1,7 +1,7 @@
 package com.usuario.reporteCrediticio.infrastructure.gateway;
 
-import com.usuario.reporteCrediticio.Service.dto.ContenedorReporteCreditoDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.ClienteDto;
+import com.usuario.reporteCrediticio.Service.dto.ReporteCreditoDto;
+import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,10 @@ public class HttpBuroGateway implements ProsesorGateWay {
     private RestTemplate restTemplate;
 
     @Override
-    public ContenedorReporteCreditoDto generarReportCred(ClienteDto dto) {
+    public ReporteCreditoDto generarReportCred(InformacionPersonalDto informacionPersonalDto) {
+        log.info("Iniciando Reporte Credito, gateway:{}",informacionPersonalDto.toString() );
         String url = "http://127.0.0.1:3000/v1/reporte/{id}";
-        ContenedorReporteCreditoDto contenedorReporteCreditoDto = this.restTemplate.getForObject(url, ContenedorReporteCreditoDto.class, dto.getClienteId());
+        ReporteCreditoDto contenedorReporteCreditoDto = this.restTemplate.getForObject(url, ReporteCreditoDto.class, informacionPersonalDto.getId());
         log.info("ContenedorReporteCreditoDto: {}", contenedorReporteCreditoDto);
         return contenedorReporteCreditoDto;
     }

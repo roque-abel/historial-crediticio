@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class CuentaDetalladaDto {
-    private Integer idCuenta;
+    private String idCuenta;
     private String tipoCredito;
     private String institucion;
     private LocalDate fechaApertura;
@@ -25,5 +25,5 @@ public class CuentaDetalladaDto {
     private Integer diasAtraso;
     private String estatus;
     private String responsabilidad;
-    private HistorialPagosDto historialPagosDto;
+    private HistorialPagosDto historialPagos;
 }

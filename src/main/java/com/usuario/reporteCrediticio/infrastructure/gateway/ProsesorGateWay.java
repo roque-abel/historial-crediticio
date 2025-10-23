@@ -1,10 +1,10 @@
 package com.usuario.reporteCrediticio.infrastructure.gateway;
 
-import com.usuario.reporteCrediticio.Service.dto.ContenedorReporteCreditoDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.ClienteDto;
+import com.usuario.reporteCrediticio.Service.dto.ReporteCreditoDto;
+import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
 
 
 public interface ProsesorGateWay {
-    ContenedorReporteCreditoDto generarReportCred(ClienteDto dto);
+    ReporteCreditoDto generarReportCred(InformacionPersonalDto dto);
 
 }
