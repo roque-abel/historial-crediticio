@@ -7,12 +7,13 @@ import com.usuario.reporteCrediticio.infrastructure.prosesorinterface.ProsesorIn
 import com.usuario.reporteCrediticio.infrastructure.repository.ProsesorRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @AllArgsConstructor
-@NoArgsConstructor
+@Slf4j
 public class DaoProsesorRepository implements ProsesorInterface {
     @Autowired
     private ProsesorRepository prosesorRepository;
@@ -22,6 +23,7 @@ public class DaoProsesorRepository implements ProsesorInterface {
     @Override
     public void guardarReporte(ReporteCreditoDto reporteCreditoDto) {
         ReporteCreditoEntity  reporteCreditoEntity = this.mapeo.reporteCreditoDtoToEntity(reporteCreditoDto);
+        log.info("reporteCreditoEntity={}", reporteCreditoEntity);
         this.prosesorRepository.save(reporteCreditoEntity);
     }
 }
