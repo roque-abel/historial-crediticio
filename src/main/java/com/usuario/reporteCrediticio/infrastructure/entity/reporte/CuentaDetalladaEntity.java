@@ -1,17 +1,17 @@
-package com.usuario.reporteCrediticio.Service.dto.reporteDto;
+package com.usuario.reporteCrediticio.infrastructure.entity.reporte;
 
+import com.usuario.reporteCrediticio.Service.dto.reporteDto.HistorialPagosDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CuentaDetalladaDto {
+public class CuentaDetalladaEntity {
     private String idCuenta;
     private String tipoCredito;
     private String institucion;

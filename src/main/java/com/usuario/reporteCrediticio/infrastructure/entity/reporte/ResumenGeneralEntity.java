@@ -1,4 +1,4 @@
-package com.usuario.reporteCrediticio.Service.dto.reporteDto;
+package com.usuario.reporteCrediticio.infrastructure.entity.reporte;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResumenGeneralDto {
+public class ResumenGeneralEntity {
     private Integer totalCreditos;
     private Integer creditosVigentes;
     private Integer creditosCerrados;

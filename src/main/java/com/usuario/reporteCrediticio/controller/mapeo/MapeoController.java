@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class MapeoController {
 
-    public InformacionPersonalDto informacionPersonalRequestToDto(InformacionPersonalRequest inforDto){
+    public InformacionPersonalDto informacionPersonalRequestToDto(InformacionPersonalRequest inforRequest){
 
-        NombreDto nombredto = this.nombreRequestToDto(inforDto.getNombre());
-        DireccionDto direccionDto = this.direccionRequestToDto(inforDto.getDireccion());
-        IdentificacionDto identificacionDto = this.identificacionRequestToDto(inforDto.getIdentificacion());
+        NombreDto nombredto = this.nombreRequestToDto(inforRequest.getNombre());
+        DireccionDto direccionDto = this.direccionRequestToDto(inforRequest.getDireccion());
+        IdentificacionDto identificacionDto = this.identificacionRequestToDto(inforRequest.getIdentificacion());
 
         InformacionPersonalDto.InformacionPersonalDtoBuilder informacionPersonalDtoBuilder = InformacionPersonalDto.builder();
-        informacionPersonalDtoBuilder.id(inforDto.getId());
+        informacionPersonalDtoBuilder.id(inforRequest.getId());
         informacionPersonalDtoBuilder.nombre(nombredto);
         informacionPersonalDtoBuilder.direccion(direccionDto);
         informacionPersonalDtoBuilder.identificacion(identificacionDto);

@@ -6,5 +6,4 @@ import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalD
 
 public interface ProsesorGateWay {
     ReporteCreditoDto generarReportCred(InformacionPersonalDto dto);
-
 }

@@ -21,7 +21,7 @@ public class ReporteCreditoDto {
     private List<CuentaDetalladaDto> cuentasDetalladas;
     private List<ConsultaRealizadaDto> consultasRealizadas;
     private List<AlertaDto>  alertas;
-    private ResumenPorTipoCreditoDto resumenPorTipoCredito;
+    private ResumenTipoCreditoDto resumenPorTipoCredito;
     private LeyendaDto leyendas;
     private InformacionContactoDto informacionContacto;
 }

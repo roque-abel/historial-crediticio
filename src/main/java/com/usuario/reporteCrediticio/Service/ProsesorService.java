@@ -18,4 +18,8 @@ public class ProsesorService {
         return reporteCreditoDto;
     }
 
+    public void guardarReporte(ReporteCreditoDto reporteCreditoDto) {
+
+    }
+
 }

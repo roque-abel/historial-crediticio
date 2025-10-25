@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResumenPorTipoCreditoDto {
+public class ResumenTipoCreditoDto {
     private TarjetaCreditoDto tarjetaCredito;
     private CreditoAutomotrizDto creditoAutomotriz;
     private CreditoHipotecarioDto creditoHipotecario;

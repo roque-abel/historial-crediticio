@@ -26,6 +26,7 @@ public class ProsesorController {
         log.info("Iniciando generar Reporte de Credito: {}", request.toString() );
         InformacionPersonalDto clienteDtodto = this.mapeo.informacionPersonalRequestToDto(request);
         ReporteCreditoDto contenedorReporteCreditoDto = this.service.generarReporte(clienteDtodto);
+        this.service.guardarReporte(contenedorReporteCreditoDto);
         return  ResponseEntity.ok(contenedorReporteCreditoDto);
     }
 
