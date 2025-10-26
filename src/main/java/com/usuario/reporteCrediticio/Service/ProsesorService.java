@@ -16,12 +16,11 @@ public class ProsesorService {
     private ProsesorInterface prosesorInterface;
 
     public ReporteCreditoDto generarReporte(InformacionPersonalDto dto) {
-        ReporteCreditoDto reporteCreditoDto = this.prosesorGateWay.generarReportCred(dto);
-        return reporteCreditoDto;
+        return this.prosesorGateWay.generarReportCred(dto);
     }
 
-    public void guardarReporte(ReporteCreditoDto reporteCreditoDto) {
-        this.prosesorInterface.guardarReporte(reporteCreditoDto);
+    public boolean guardarReporte(ReporteCreditoDto reporteCreditoDto) {
+       return this.prosesorInterface.guardarReporte(reporteCreditoDto);
     }
 
 }

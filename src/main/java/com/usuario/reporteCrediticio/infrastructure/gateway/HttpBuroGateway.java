@@ -17,10 +17,14 @@ public class HttpBuroGateway implements ProsesorGateWay {
 
     @Override
     public ReporteCreditoDto generarReportCred(InformacionPersonalDto informacionPersonalDto) {
-        log.info("Iniciando Reporte Credito, gateway:{}",informacionPersonalDto.toString() );
-        String url = "http://127.0.0.1:3000/v1/reporte/{id}";
-        ReporteCreditoDto contenedorReporteCreditoDto = this.restTemplate.getForObject(url, ReporteCreditoDto.class, informacionPersonalDto.getId());
-        log.info("ContenedorReporteCreditoDto: {}", contenedorReporteCreditoDto);
-        return contenedorReporteCreditoDto;
+        try {
+            String url = "http://127.0.0.1:3000/v1/reporte/{id}";
+            ReporteCreditoDto contenedorReporteCreditoDto = this.restTemplate.getForObject(url, ReporteCreditoDto.class, informacionPersonalDto.getId());
+            log.info("ContenedorReporteCreditoDto: {}", contenedorReporteCreditoDto);
+            return contenedorReporteCreditoDto;
+        } catch (Exception e) {
+            log.info("Error iniciando Reporte Credito, gateway:{}", e.getMessage());
+            throw new RuntimeException("Error iniciando Reporte Credito");
+        }
     }
 }

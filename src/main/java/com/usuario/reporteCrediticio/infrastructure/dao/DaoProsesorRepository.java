@@ -21,9 +21,16 @@ public class DaoProsesorRepository implements ProsesorInterface {
     private Mapeo mapeo;
 
     @Override
-    public void guardarReporte(ReporteCreditoDto reporteCreditoDto) {
-        ReporteCreditoEntity  reporteCreditoEntity = this.mapeo.reporteCreditoDtoToEntity(reporteCreditoDto);
-        log.info("reporteCreditoEntity={}", reporteCreditoEntity);
-        this.prosesorRepository.save(reporteCreditoEntity);
+    public boolean guardarReporte(ReporteCreditoDto reporteCreditoDto) {
+        boolean guardado = false;
+        try {
+            ReporteCreditoEntity reporteCreditoEntity = this.mapeo.reporteCreditoDtoToEntity(reporteCreditoDto);
+            log.info("reporteCreditoEntity={}", reporteCreditoEntity);
+            this.prosesorRepository.save(reporteCreditoEntity);
+            guardado = true;
+        }catch (Exception e){
+            log.info("no se pudo guardar reporteCreditoEntity: {}", e.getMessage());
+        }
+        return  guardado;
     }
 }

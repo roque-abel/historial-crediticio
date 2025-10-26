@@ -9,6 +9,7 @@ import com.usuario.reporteCrediticio.controller.request.InformacionPersonalReque
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +23,12 @@ public class ProsesorController {
     private ProsesorService service;
 
     @PostMapping("v1/reporte")
-    public ResponseEntity<ReporteCreditoDto> generarReporte(@RequestBody InformacionPersonalRequest request){
+    public ResponseEntity<ReporteCreditoDto> generarReporte(@Validated @RequestBody InformacionPersonalRequest request){
         log.info("Iniciando generar Reporte de Credito: {}", request.toString() );
         InformacionPersonalDto clienteDtodto = this.mapeo.informacionPersonalRequestToDto(request);
         ReporteCreditoDto contenedorReporteCreditoDto = this.service.generarReporte(clienteDtodto);
-        this.service.guardarReporte(contenedorReporteCreditoDto);
+        boolean guardado = this.service.guardarReporte(contenedorReporteCreditoDto);
+        log.info("Reporte de Credito guardado: {}", guardado);
         return  ResponseEntity.ok(contenedorReporteCreditoDto);
     }
 
