@@ -1,8 +1,5 @@
 package com.usuario.reporteCrediticio.infrastructure.entity.reporte.resumentipocredito;
 
-import com.usuario.reporteCrediticio.Service.dto.reporteDto.CreditoAutomotrizDto;
-import com.usuario.reporteCrediticio.Service.dto.reporteDto.CreditoHipotecarioDto;
-import com.usuario.reporteCrediticio.Service.dto.reporteDto.TarjetaCreditoDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

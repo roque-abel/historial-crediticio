@@ -1,9 +1,9 @@
 package com.usuario.reporteCrediticio.controller.mapeo;
 
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.DireccionDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.IdentificacionDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.NombreDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.DireccionDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.IdentificacionDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.InformacionPersonalDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.NombreDto;
 import com.usuario.reporteCrediticio.controller.request.DireccionRequest;
 import com.usuario.reporteCrediticio.controller.request.IdentificacionRequest;
 import com.usuario.reporteCrediticio.controller.request.InformacionPersonalRequest;

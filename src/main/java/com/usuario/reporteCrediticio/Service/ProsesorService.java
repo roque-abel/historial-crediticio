@@ -1,7 +1,9 @@
 package com.usuario.reporteCrediticio.Service;
 
-import com.usuario.reporteCrediticio.Service.dto.ReporteCreditoDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
+import com.usuario.reporteCrediticio.Service.dto.motordereglas.NivelRiesgoDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.ReporteCreditoDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.InformacionPersonalDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.reporteDto.MetadataDto;
 import com.usuario.reporteCrediticio.infrastructure.gateway.ProsesorGateWay;
 import com.usuario.reporteCrediticio.infrastructure.prosesorinterface.ProsesorInterface;
 import lombok.AllArgsConstructor;
@@ -23,4 +25,7 @@ public class ProsesorService {
        return this.prosesorInterface.guardarReporte(reporteCreditoDto);
     }
 
+    public NivelRiesgoDto mostrarNivelDeRiesgo(MetadataDto metadataDto) {
+        return this.prosesorGateWay.generarNivelRiesgoDto(metadataDto);
+    }
 }

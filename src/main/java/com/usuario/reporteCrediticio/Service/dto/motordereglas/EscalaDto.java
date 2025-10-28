@@ -1,4 +1,4 @@
-package com.usuario.reporteCrediticio.Service.dto.reporteDto;
+package com.usuario.reporteCrediticio.Service.dto.motordereglas;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PeriodoDto {
-    private String mes;
-    private String estatus;
+public class EscalaDto {
+    private Double minimo;
+    private Double maximo;
 }

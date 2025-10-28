@@ -1,12 +1,11 @@
 package com.usuario.reporteCrediticio.infrastructure.dao;
 
-import com.usuario.reporteCrediticio.Service.dto.ReporteCreditoDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.ReporteCreditoDto;
 import com.usuario.reporteCrediticio.infrastructure.entity.ReporteCreditoEntity;
 import com.usuario.reporteCrediticio.infrastructure.mapeo.Mapeo;
 import com.usuario.reporteCrediticio.infrastructure.prosesorinterface.ProsesorInterface;
 import com.usuario.reporteCrediticio.infrastructure.repository.ProsesorRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

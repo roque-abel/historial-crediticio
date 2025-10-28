@@ -1,4 +1,4 @@
-package com.usuario.reporteCrediticio.Service.dto.reporteDto;
+package com.usuario.reporteCrediticio.Service.dto.reportecrediticio.reporteDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

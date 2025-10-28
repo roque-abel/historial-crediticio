@@ -1,11 +1,11 @@
 package com.usuario.reporteCrediticio.infrastructure.mapeo;
 
-import com.usuario.reporteCrediticio.Service.dto.ReporteCreditoDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.DireccionDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.IdentificacionDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.NombreDto;
-import com.usuario.reporteCrediticio.Service.dto.reporteDto.*;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.ReporteCreditoDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.DireccionDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.IdentificacionDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.InformacionPersonalDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.NombreDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.reporteDto.*;
 import com.usuario.reporteCrediticio.infrastructure.entity.ReporteCreditoEntity;
 import com.usuario.reporteCrediticio.infrastructure.entity.reporte.*;
 import com.usuario.reporteCrediticio.infrastructure.entity.reporte.informacioncliente.DireccionEntity;

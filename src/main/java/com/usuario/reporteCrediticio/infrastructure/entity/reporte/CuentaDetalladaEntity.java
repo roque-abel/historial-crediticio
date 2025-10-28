@@ -1,6 +1,6 @@
 package com.usuario.reporteCrediticio.infrastructure.entity.reporte;
 
-import com.usuario.reporteCrediticio.Service.dto.reporteDto.HistorialPagosDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.reporteDto.HistorialPagosDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.usuario.reporteCrediticio.Service.dto;
+package com.usuario.reporteCrediticio.Service.dto.reportecrediticio;
 
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
-import com.usuario.reporteCrediticio.Service.dto.reporteDto.*;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.InformacionPersonalDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.reporteDto.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

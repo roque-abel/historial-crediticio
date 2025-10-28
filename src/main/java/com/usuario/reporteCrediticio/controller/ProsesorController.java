@@ -1,8 +1,9 @@
 package com.usuario.reporteCrediticio.controller;
 
 import com.usuario.reporteCrediticio.Service.ProsesorService;
-import com.usuario.reporteCrediticio.Service.dto.ReporteCreditoDto;
-import com.usuario.reporteCrediticio.Service.dto.clienteDto.InformacionPersonalDto;
+import com.usuario.reporteCrediticio.Service.dto.motordereglas.NivelRiesgoDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.ReporteCreditoDto;
+import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.InformacionPersonalDto;
 import com.usuario.reporteCrediticio.controller.mapeo.MapeoController;
 
 import com.usuario.reporteCrediticio.controller.request.InformacionPersonalRequest;
@@ -22,14 +23,18 @@ public class ProsesorController {
     @Autowired
     private ProsesorService service;
 
-    @PostMapping("v1/reporte")
-    public ResponseEntity<ReporteCreditoDto> generarReporte(@Validated @RequestBody InformacionPersonalRequest request){
+    @PostMapping("v1/level-riks")
+    public ResponseEntity<NivelRiesgoDto> nivelDeRiesgo(@Validated @RequestBody InformacionPersonalRequest request){
         log.info("Iniciando generar Reporte de Credito: {}", request.toString() );
         InformacionPersonalDto clienteDtodto = this.mapeo.informacionPersonalRequestToDto(request);
         ReporteCreditoDto contenedorReporteCreditoDto = this.service.generarReporte(clienteDtodto);
         boolean guardado = this.service.guardarReporte(contenedorReporteCreditoDto);
         log.info("Reporte de Credito guardado: {}", guardado);
-        return  ResponseEntity.ok(contenedorReporteCreditoDto);
+        NivelRiesgoDto nivelRiesgoDto = this.service.mostrarNivelDeRiesgo(contenedorReporteCreditoDto.getMetadata());
+        log.info("Nivel de riesgo generado: {}", nivelRiesgoDto);
+        return  ResponseEntity.ok(nivelRiesgoDto);
     }
+
+
 
 }
