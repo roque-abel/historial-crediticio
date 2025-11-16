@@ -1,4 +1,4 @@
-package com.usuario.reporteCrediticio.infrastructure.entity.reporte.resumentipocredito;
+package com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.reporte.resumentipocredito;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

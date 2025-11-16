@@ -24,4 +24,5 @@ public class ReporteCreditoDto {
     private ResumenTipoCreditoDto resumenPorTipoCredito;
     private LeyendaDto leyendas;
     private InformacionContactoDto informacionContacto;
+
 }

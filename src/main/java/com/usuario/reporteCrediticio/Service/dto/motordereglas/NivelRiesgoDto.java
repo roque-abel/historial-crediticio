@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class NivelRiesgoDto {
-    private MetadataDto metadata;
+    private Integer id;
     private String estatus;
     private String nivel;
     private String descripcion;

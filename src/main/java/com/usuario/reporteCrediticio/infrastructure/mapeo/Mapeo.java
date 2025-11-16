@@ -1,20 +1,28 @@
 package com.usuario.reporteCrediticio.infrastructure.mapeo;
 
+import com.usuario.reporteCrediticio.Service.dto.motordereglas.EscalaDto;
+import com.usuario.reporteCrediticio.Service.dto.motordereglas.FactorClaveDto;
+import com.usuario.reporteCrediticio.Service.dto.motordereglas.NivelRiesgoDto;
 import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.ReporteCreditoDto;
 import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.DireccionDto;
 import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.IdentificacionDto;
 import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.InformacionPersonalDto;
 import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.clienteDto.NombreDto;
 import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.reporteDto.*;
-import com.usuario.reporteCrediticio.infrastructure.entity.ReporteCreditoEntity;
-import com.usuario.reporteCrediticio.infrastructure.entity.reporte.*;
-import com.usuario.reporteCrediticio.infrastructure.entity.reporte.informacioncliente.DireccionEntity;
-import com.usuario.reporteCrediticio.infrastructure.entity.reporte.informacioncliente.IdentificacionEntity;
-import com.usuario.reporteCrediticio.infrastructure.entity.reporte.informacioncliente.InformacionContactoEntity;
-import com.usuario.reporteCrediticio.infrastructure.entity.reporte.informacioncliente.NombreEntity;
-import com.usuario.reporteCrediticio.infrastructure.entity.reporte.resumentipocredito.*;
+import com.usuario.reporteCrediticio.infrastructure.entity.nivelriegoentity.Escala;
+import com.usuario.reporteCrediticio.infrastructure.entity.nivelriegoentity.FactorClave;
+import com.usuario.reporteCrediticio.infrastructure.entity.nivelriegoentity.NivelRiesgoEntity;
+import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.ReporteCreditoEntity;
+import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.reporte.*;
+import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.reporte.informacioncliente.DireccionEntity;
+import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.reporte.informacioncliente.IdentificacionEntity;
+import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.reporte.informacioncliente.InformacionContactoEntity;
+import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.reporte.informacioncliente.NombreEntity;
+import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.reporte.resumentipocredito.*;
 import org.springframework.stereotype.Component;
 
+import javax.lang.model.type.IntersectionType;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +53,8 @@ public class Mapeo {
         reporteCreditoEntityBuilder.cuentasDetalladas(cuentaDetalladaEntities);
         reporteCreditoEntityBuilder.alertas(alertaEntities);
         reporteCreditoEntityBuilder.consultasRealizadas(consultaRealizadaEntities);
-        return  reporteCreditoEntityBuilder.build();
+        reporteCreditoEntityBuilder.fechaActualizacion(new Date());
+        return reporteCreditoEntityBuilder.build();
 
     }
 
@@ -69,16 +78,18 @@ public class Mapeo {
                         .build())
                 .collect(Collectors.toList());
     }
+
     private List<ConsultaRealizadaEntity> listConsultaRealizadaDtoToEntity(List<ConsultaRealizadaDto> consultasRealizadas) {
         return consultasRealizadas.stream()
                 .map(consulta -> ConsultaRealizadaEntity.builder()
-                                .fecha(consulta.getFecha())
-                                .institucion(consulta.getInstitucion())
-                                .tipoConsulta(consulta.getTipoConsulta())
-                                .motivo(consulta.getMotivo())
-                                .build())
+                        .fecha(consulta.getFecha())
+                        .institucion(consulta.getInstitucion())
+                        .tipoConsulta(consulta.getTipoConsulta())
+                        .motivo(consulta.getMotivo())
+                        .build())
                 .collect(Collectors.toList());
     }
+
     private List<AlertaEntity> listAlertaDtoToEntity(List<AlertaDto> alertas) {
         return alertas.stream()
                 .map(alerta -> AlertaEntity.builder()
@@ -90,7 +101,7 @@ public class Mapeo {
                 .collect(Collectors.toList());
     }
 
-    private MetadataEntity metadataDtoToEntity(MetadataDto metadataDto ){
+    private MetadataEntity metadataDtoToEntity(MetadataDto metadataDto) {
 
         MetadataEntity.MetadataEntityBuilder metadataBuilderEntity = MetadataEntity.builder();
         metadataBuilderEntity.numeroReporte(metadataDto.getNumeroReporte());
@@ -100,7 +111,7 @@ public class Mapeo {
         return metadataBuilderEntity.build();
     }
 
-    private InformacionPersonalEntity informacionPersonalDtoToEntity(InformacionPersonalDto informacionPersonalDto){
+    private InformacionPersonalEntity informacionPersonalDtoToEntity(InformacionPersonalDto informacionPersonalDto) {
 
         DireccionEntity direccion = this.direccionDtoToEntity(informacionPersonalDto.getDireccion());
         IdentificacionEntity identificacion = this.identificacionDtoToEntity(informacionPersonalDto.getIdentificacion());
@@ -114,7 +125,7 @@ public class Mapeo {
         return infoPersonalBuilderEntity.build();
     }
 
-    private DireccionEntity direccionDtoToEntity(DireccionDto direccionDto){
+    private DireccionEntity direccionDtoToEntity(DireccionDto direccionDto) {
         DireccionEntity.DireccionEntityBuilder direccionBuilderEntity = DireccionEntity.builder();
         direccionBuilderEntity.calle(direccionDto.getCalle());
         direccionBuilderEntity.numeroExterior(direccionDto.getNumeroExterior());
@@ -124,14 +135,16 @@ public class Mapeo {
         direccionBuilderEntity.estado(direccionDto.getEstado());
         return direccionBuilderEntity.build();
     }
-    private IdentificacionEntity identificacionDtoToEntity(IdentificacionDto identificacionDto){
-        IdentificacionEntity.IdentificacionEntityBuilder  identificacionBuilderEntity = IdentificacionEntity.builder();
+
+    private IdentificacionEntity identificacionDtoToEntity(IdentificacionDto identificacionDto) {
+        IdentificacionEntity.IdentificacionEntityBuilder identificacionBuilderEntity = IdentificacionEntity.builder();
         identificacionBuilderEntity.rfc(identificacionDto.getRfc());
         identificacionBuilderEntity.curp(identificacionDto.getCurp());
         identificacionBuilderEntity.fechaNacimiento(identificacionDto.getFechaNacimiento());
         return identificacionBuilderEntity.build();
     }
-    private NombreEntity nombreDtoToEntity(NombreDto nombreDto){
+
+    private NombreEntity nombreDtoToEntity(NombreDto nombreDto) {
         NombreEntity.NombreEntityBuilder nombreEntityBuilder = NombreEntity.builder();
         nombreEntityBuilder.nombre(nombreDto.getNombre());
         nombreEntityBuilder.apellidoMaterno(nombreDto.getApellidoMaterno());
@@ -139,7 +152,8 @@ public class Mapeo {
         return nombreEntityBuilder.build();
 
     }
-    private ResumenGeneralEntity resumenGeneralDtoToEntity(ResumenGeneralDto resumenGeneralDto){
+
+    private ResumenGeneralEntity resumenGeneralDtoToEntity(ResumenGeneralDto resumenGeneralDto) {
         ResumenGeneralEntity.ResumenGeneralEntityBuilder resumenGeneralEntityBuilder = ResumenGeneralEntity.builder();
         resumenGeneralEntityBuilder.totalCreditos(resumenGeneralDto.getTotalCreditos());
         resumenGeneralEntityBuilder.creditosVigentes(resumenGeneralDto.getCreditosVigentes());
@@ -151,7 +165,8 @@ public class Mapeo {
         resumenGeneralEntityBuilder.porcentajeEndeudamiento(resumenGeneralDto.getPorcentajeEndeudamiento());
         return resumenGeneralEntityBuilder.build();
     }
-    private ScoreCrediticioEntity scoreCrediticioDtoToEntity(ScoreCrediticioDto scoreCrediticioDto){
+
+    private ScoreCrediticioEntity scoreCrediticioDtoToEntity(ScoreCrediticioDto scoreCrediticioDto) {
         ScoreCrediticioEntity.ScoreCrediticioEntityBuilder scoreCrediticioEntityBuilder = ScoreCrediticioEntity.builder();
         scoreCrediticioEntityBuilder.puntaje(scoreCrediticioDto.getPuntaje());
         scoreCrediticioEntityBuilder.escala(scoreCrediticioDto.getEscala());
@@ -160,7 +175,8 @@ public class Mapeo {
         scoreCrediticioEntityBuilder.factoresInfluencia(scoreCrediticioDto.getFactoresInfluencia());
         return scoreCrediticioEntityBuilder.build();
     }
-    private ResumenTipoCreditoEntity resumenTipoCreditoDtoToEntity(ResumenTipoCreditoDto  resumenTipoCreditoDto){
+
+    private ResumenTipoCreditoEntity resumenTipoCreditoDtoToEntity(ResumenTipoCreditoDto resumenTipoCreditoDto) {
         TarjetaCreditoEntity tarjetaCreditoEntity = this.tarjetaCreditoDtoToEntity(resumenTipoCreditoDto.getTarjetaCredito());
         CreditoAutomotrizEntity creditoAutomotrizEntity = this.creditoAutomotrizDtoToEntity(resumenTipoCreditoDto.getCreditoAutomotriz());
         CreditoHipotecarioEntity creditoHipotecarioEntity = this.creditoHipotecarioDtoToEntity(resumenTipoCreditoDto.getCreditoHipotecario());
@@ -169,10 +185,11 @@ public class Mapeo {
         resumenTipoCreditoEntityBuilder.tarjetaCredito(tarjetaCreditoEntity);
         resumenTipoCreditoEntityBuilder.creditoAutomotriz(creditoAutomotrizEntity);
         resumenTipoCreditoEntityBuilder.creditoHipotecario(creditoHipotecarioEntity);
-        return  resumenTipoCreditoEntityBuilder.build();
+        return resumenTipoCreditoEntityBuilder.build();
 
     }
-    private TarjetaCreditoEntity tarjetaCreditoDtoToEntity(TarjetaCreditoDto tarjetaCreditoDto){
+
+    private TarjetaCreditoEntity tarjetaCreditoDtoToEntity(TarjetaCreditoDto tarjetaCreditoDto) {
         TarjetaCreditoEntity.TarjetaCreditoEntityBuilder tarjetaCreditoEntityBuilder = TarjetaCreditoEntity.builder();
         tarjetaCreditoEntityBuilder.totalCuentas(tarjetaCreditoDto.getTotalCuentas());
         tarjetaCreditoEntityBuilder.cuentasVigentes(tarjetaCreditoDto.getCuentasVigentes());
@@ -183,7 +200,8 @@ public class Mapeo {
         tarjetaCreditoEntityBuilder.usoPorcentaje(tarjetaCreditoDto.getUsoPorcentaje());
         return tarjetaCreditoEntityBuilder.build();
     }
-    private CreditoAutomotrizEntity creditoAutomotrizDtoToEntity(CreditoAutomotrizDto creditoAutomotrizDto){
+
+    private CreditoAutomotrizEntity creditoAutomotrizDtoToEntity(CreditoAutomotrizDto creditoAutomotrizDto) {
         CreditoAutomotrizEntity.CreditoAutomotrizEntityBuilder creditoAutomotrizEntityBuilder = CreditoAutomotrizEntity.builder();
         creditoAutomotrizEntityBuilder.totalCuentas(creditoAutomotrizDto.getTotalCuentas());
         creditoAutomotrizEntityBuilder.cuentasVigentes(creditoAutomotrizDto.getCuentasVigentes());
@@ -192,20 +210,23 @@ public class Mapeo {
         creditoAutomotrizEntityBuilder.usoPorcentaje(creditoAutomotrizDto.getUsoPorcentaje());
         return creditoAutomotrizEntityBuilder.build();
     }
-    private CreditoHipotecarioEntity creditoHipotecarioDtoToEntity(CreditoHipotecarioDto creditoHipotecarioDto){
+
+    private CreditoHipotecarioEntity creditoHipotecarioDtoToEntity(CreditoHipotecarioDto creditoHipotecarioDto) {
         CreditoHipotecarioEntity.CreditoHipotecarioEntityBuilder creditoHipotecarioEntityBuilder = CreditoHipotecarioEntity.builder();
         creditoHipotecarioEntityBuilder.totalCuentas(creditoHipotecarioDto.getTotalCuentas());
         creditoHipotecarioEntityBuilder.lineaTotal(creditoHipotecarioDto.getLineaTotal());
         creditoHipotecarioEntityBuilder.saldoTotal(creditoHipotecarioDto.getSaldoTotal());
         return creditoHipotecarioEntityBuilder.build();
     }
-    private LeyendaEntity leyendaDtoToEntity(LeyendaDto leyendaDto){
+
+    private LeyendaEntity leyendaDtoToEntity(LeyendaDto leyendaDto) {
         LeyendaEntity.LeyendaEntityBuilder leyendaEntityBuilder = LeyendaEntity.builder();
         leyendaEntityBuilder.estatusCuenta(leyendaDto.getEstatusCuenta());
         leyendaEntityBuilder.codigosPago(leyendaDto.getCodigosPago());
         leyendaEntityBuilder.tiposConsulta(leyendaDto.getTiposConsulta());
         return leyendaEntityBuilder.build();
     }
+
     private InformacionContactoEntity informacionContactoDtoToEntity(InformacionContactoDto informacionContactoDto) {
         InformacionContactoEntity.InformacionContactoEntityBuilder informacionContactoEntityBuilder = InformacionContactoEntity.builder();
         informacionContactoEntityBuilder.telefonoAtencion(informacionContactoDto.getTelefonoAtencion());
@@ -215,7 +236,88 @@ public class Mapeo {
         return informacionContactoEntityBuilder.build();
     }
 
+        public NivelRiesgoEntity nivelRiesgoDtoToEntity(NivelRiesgoDto nivelRiesgoDto) {
 
 
+            Escala esc = this.escalaDtoToEntity(nivelRiesgoDto.getEscala());
+            FactorClave factorC = this.factorClaveDtoToEntity(nivelRiesgoDto.getFactorClave());
+
+
+
+            return NivelRiesgoEntity.builder()
+
+                    .id(nivelRiesgoDto.getId())
+                    .estatus(nivelRiesgoDto.getEstatus())
+                    .nivel(nivelRiesgoDto.getNivel())
+                    .descripcion(nivelRiesgoDto.getDescripcion())
+                    .puntajeInterno(nivelRiesgoDto.getPuntajeInterno())
+                    .escala(esc)
+                    .categoria(nivelRiesgoDto.getCategoria())
+                    .esApto(nivelRiesgoDto.getEsApto())
+                    .probabilidadAprobacion(nivelRiesgoDto.getProbabilidadAprobacion())
+                    .recomendacion(nivelRiesgoDto.getRecomendacion())
+                    .factorClave(factorC)
+                    .evaluadoPor(nivelRiesgoDto.getEvaluadoPor())
+                    .fechaEvaluacion(nivelRiesgoDto.getFechaEvaluacion())
+                    .build();
+
+        }
+
+    private Escala escalaDtoToEntity(EscalaDto escalaDto) {
+        return Escala.builder()
+                .minimo(escalaDto.getMinimo())
+                .maximo(escalaDto.getMaximo())
+                .build();
+    }
+
+    private FactorClave factorClaveDtoToEntity(FactorClaveDto factorClaveDto) {
+        return FactorClave.builder()
+                .usoCredito(factorClaveDto.getUsoCredito())
+                .historialPagos(factorClaveDto.getHistorialPagos())
+                .ingresosEstimados(factorClaveDto.getIngresosEstimados())
+                .deudaTotal(factorClaveDto.getDeudaTotal())
+                .porcentajeDeudaSobreIngreso(factorClaveDto.getPorcentajeDeudaSobreIngreso())
+                .consultasRecientes(factorClaveDto.getConsultasRecientes())
+                .build();
+    }
+
+    public NivelRiesgoDto nivelRiesgoEntityToDto(NivelRiesgoEntity nivelRiesgoEntity) {
+
+        FactorClaveDto factorClaveDto = this.FactorClaveEntityToDto(nivelRiesgoEntity.getFactorClave());
+        EscalaDto escalaDto = this.escalaEntityToDto(nivelRiesgoEntity.getEscala());
+        return NivelRiesgoDto.builder()
+                .id(nivelRiesgoEntity.getId())
+                .estatus(nivelRiesgoEntity.getEstatus())
+                .nivel(nivelRiesgoEntity.getNivel())
+                .descripcion(nivelRiesgoEntity.getDescripcion())
+                .puntajeInterno(nivelRiesgoEntity.getPuntajeInterno())
+                .escala(escalaDto)
+                .categoria(nivelRiesgoEntity.getCategoria())
+                .esApto(nivelRiesgoEntity.getEsApto())
+                .probabilidadAprobacion(nivelRiesgoEntity.getProbabilidadAprobacion())
+                .recomendacion(nivelRiesgoEntity.getRecomendacion())
+                .factorClave(factorClaveDto)
+                .evaluadoPor(nivelRiesgoEntity.getEvaluadoPor())
+                .fechaEvaluacion(nivelRiesgoEntity.getFechaEvaluacion())
+                .build();
+
+    }
+
+    private EscalaDto escalaEntityToDto(Escala escala) {
+        return EscalaDto.builder()
+                .maximo(escala.getMaximo())
+                .minimo(escala.getMinimo())
+                .build();
+    }
+    private FactorClaveDto FactorClaveEntityToDto(FactorClave factorClave) {
+        return FactorClaveDto.builder()
+                .usoCredito(factorClave.getUsoCredito())
+                .historialPagos(factorClave.getHistorialPagos())
+                .ingresosEstimados(factorClave.getIngresosEstimados())
+                .deudaTotal(factorClave.getDeudaTotal())
+                .porcentajeDeudaSobreIngreso(factorClave.getPorcentajeDeudaSobreIngreso())
+                .consultasRecientes(factorClave.getConsultasRecientes())
+                .build();
+    }
 
 }

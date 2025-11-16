@@ -18,12 +18,12 @@ public class HttpProsesorGateway implements ProsesorGateWay {
     private RestTemplate restTemplate;
 
     @Override
-    public ReporteCreditoDto generarReportCred(InformacionPersonalDto informacionPersonalDto) {
+    public ReporteCreditoDto calcularReportCred(InformacionPersonalDto informacionPersonalDto) {
         try {
             String url = "http://127.0.0.1:3000/v1/reporte/{id}";
-            ReporteCreditoDto contenedorReporteCreditoDto = this.restTemplate.getForObject(url, ReporteCreditoDto.class, informacionPersonalDto.getId());
-            log.info("ContenedorReporteCreditoDto: {}", contenedorReporteCreditoDto);
-            return contenedorReporteCreditoDto;
+            ReporteCreditoDto reporteCreditoDto = this.restTemplate.getForObject(url, ReporteCreditoDto.class, informacionPersonalDto.getId());
+            log.info("ContenedorReporteCreditoDto: {}", reporteCreditoDto);
+            return reporteCreditoDto;
         } catch (Exception e) {
             log.info("Error iniciando Reporte Credito, gateway:{}", e.getMessage());
             throw new RuntimeException("Error iniciando Reporte Credito");
@@ -31,16 +31,16 @@ public class HttpProsesorGateway implements ProsesorGateWay {
     }
 
     @Override
-    public NivelRiesgoDto generarNivelRiesgoDto(MetadataDto metadataDto) {
+    public NivelRiesgoDto calcularNivelRiesgoDto(ReporteCreditoDto reporteCreditoDto) {
         try {
-        String url = "http://127.0.0.1:3000/v1/motor-de-reglas/{id}";
-        NivelRiesgoDto nivelRiesgoDto = this.restTemplate.getForObject(url, NivelRiesgoDto.class, metadataDto.getNumeroReporte());
-        log.info("nivel de riesgo: {}", nivelRiesgoDto);
-        return nivelRiesgoDto;
-    } catch (Exception e) {
-        log.info("Error iniciando nivel de riesgo, gateway:{}", e.getMessage());
-        throw new RuntimeException("Error iniciando nivel de riesgo");
-    }
+            String url = "http://127.0.0.1:3000/v1/motor-de-reglas";
+            NivelRiesgoDto nivelRiesgoDto = this.restTemplate.postForObject(url, reporteCreditoDto, NivelRiesgoDto.class );
+            log.info("nivel de riesgo: {}", nivelRiesgoDto);
+            return nivelRiesgoDto;
+        } catch (Exception e) {
+            log.info("Error iniciando nivel de riesgo, gateway:{}", e.getMessage());
+            throw new RuntimeException("Error iniciando nivel de riesgo");
+        }
     }
 
 }

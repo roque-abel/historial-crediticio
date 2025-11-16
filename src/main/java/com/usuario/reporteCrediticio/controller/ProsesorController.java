@@ -1,5 +1,6 @@
 package com.usuario.reporteCrediticio.controller;
 
+import com.usuario.reporteCrediticio.Service.ProsesorHandler;
 import com.usuario.reporteCrediticio.Service.ProsesorService;
 import com.usuario.reporteCrediticio.Service.dto.motordereglas.NivelRiesgoDto;
 import com.usuario.reporteCrediticio.Service.dto.reportecrediticio.ReporteCreditoDto;
@@ -21,18 +22,20 @@ public class ProsesorController {
     @Autowired
     private MapeoController mapeo;
     @Autowired
-    private ProsesorService service;
+    private ProsesorHandler prosesorHandler;
+    @Autowired
+    private ProsesorService prosesorService;
 
     @PostMapping("v1/level-riks")
-    public ResponseEntity<NivelRiesgoDto> nivelDeRiesgo(@Validated @RequestBody InformacionPersonalRequest request){
+    public ResponseEntity<NivelRiesgoDto> calcularNivelRiesgo(@Validated @RequestBody InformacionPersonalRequest request){
+
         log.info("Iniciando generar Reporte de Credito: {}", request.toString() );
-        InformacionPersonalDto clienteDtodto = this.mapeo.informacionPersonalRequestToDto(request);
-        ReporteCreditoDto contenedorReporteCreditoDto = this.service.generarReporte(clienteDtodto);
-        boolean guardado = this.service.guardarReporte(contenedorReporteCreditoDto);
-        log.info("Reporte de Credito guardado: {}", guardado);
-        NivelRiesgoDto nivelRiesgoDto = this.service.mostrarNivelDeRiesgo(contenedorReporteCreditoDto.getMetadata());
-        log.info("Nivel de riesgo generado: {}", nivelRiesgoDto);
+        InformacionPersonalDto informacionPersonalDto = this.mapeo.informacionPersonalRequestToDto(request);
+
+        NivelRiesgoDto nivelRiesgoDto = this.prosesorHandler.calcularNivelRiesgo(informacionPersonalDto);
+
         return  ResponseEntity.ok(nivelRiesgoDto);
+
     }
 
 
