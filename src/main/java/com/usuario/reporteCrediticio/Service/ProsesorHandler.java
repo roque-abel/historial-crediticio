@@ -20,7 +20,7 @@ public class ProsesorHandler {
     @Autowired
     private ProsesorService service;
 
-   /* public Boolean esVigente(InformacionPersonalDto informacionPersonalDto) {
+  /*  public Boolean esVigente(InformacionPersonalDto informacionPersonalDto) {
 
         ReporteCreditoDto reporteCreditoDto = this.buscarReporte(informacionPersonalDto);
 
@@ -49,15 +49,17 @@ public class ProsesorHandler {
         if (reporteCreditoDto == null) {
             log.warn("No se encontró reporte para el RFC proporcionado");
         }
+        log.warn("en encotro reporte credito por rfc"+ reporteCreditoDto);
         return reporteCreditoDto;
     }
-
-    public CatVigenciaDto obtenerVigenciaDto(ReporteCreditoDto reporteCreditoDto){
+    public CatVigenciaDto obtenerVigenciaDto(InformacionPersonalDto informacionPersonalDto) {
+        ReporteCreditoDto reporteCreditoDto = this.buscarReporte(informacionPersonalDto);
         CatVigenciaDto vigenciaDto = this.service.obtenerVigencia(reporteCreditoDto.getProducto());
         if (vigenciaDto == null) {
             log.warn("El reporte encontrado no tiene fecha de creación");
         }
-        return  vigenciaDto;
+        log.warn("vigencia del reporte:" + " "+ vigenciaDto.getDiasVigencia());
+        return vigenciaDto;
     }
 
 
@@ -71,6 +73,7 @@ public class ProsesorHandler {
         log.info("Reporte de Credito reporteGuardado: {}", reporteGuardado);
 
         NivelRiesgoDto nivelRiesgoDto = this.service.calrcularNivelDeRiesgo(reporteCreditoDto);
+        this.service.guardarNivelDeRiesgo(nivelRiesgoDto);
         log.info("Nivel de riesgo generado: {}", nivelRiesgoDto);
 /**
  boolean nivelDeRiesgoGuardado = this.service.guardarNivelDeRiesgo(nivelRiesgoDto);
@@ -78,4 +81,5 @@ public class ProsesorHandler {
  */
         return nivelRiesgoDto;
     }
+
 }

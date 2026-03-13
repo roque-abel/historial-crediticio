@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ReporteCreditoDto {
+    private String idReporte;
     private MetadataDto metadata;
     private InformacionPersonalDto informacionPersonal;
     private ResumenGeneralDto resumenGeneral;
@@ -30,4 +31,20 @@ public class ReporteCreditoDto {
     private Date fechaCreacion;
     private Date fechaActualizacion;
 
+    public ReporteCreditoDto(Date fechaActualizacion, InformacionPersonalDto informacionPersonal, MetadataDto metadata, ResumenGeneralDto resumenGeneral, ScoreCrediticioDto scoreCrediticio, List<CuentaDetalladaDto> cuentasDetalladas, List<ConsultaRealizadaDto> consultasRealizadas, List<AlertaDto> alertas, ResumenTipoCreditoDto resumenPorTipoCredito, LeyendaDto leyendas, InformacionContactoDto informacionContacto, Boolean estatus, String producto, Date fechaCreacion) {
+        this.fechaActualizacion = fechaActualizacion;
+        this.informacionPersonal = informacionPersonal;
+        this.metadata = metadata;
+        this.resumenGeneral = resumenGeneral;
+        this.scoreCrediticio = scoreCrediticio;
+        this.cuentasDetalladas = cuentasDetalladas;
+        this.consultasRealizadas = consultasRealizadas;
+        this.alertas = alertas;
+        this.resumenPorTipoCredito = resumenPorTipoCredito;
+        this.leyendas = leyendas;
+        this.informacionContacto = informacionContacto;
+        this.estatus = estatus;
+        this.producto = producto;
+        this.fechaCreacion = fechaCreacion;
+    }
 }

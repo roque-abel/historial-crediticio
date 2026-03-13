@@ -22,6 +22,7 @@ public class ProsesorService {
     @Autowired
     private NivelRiesgoRepository nivelRiesgoRepository;
 
+
     public ReporteCreditoDto calcularReporte(InformacionPersonalDto dto) {
         return this.prosesorGateWay.calcularReportCred(dto);
     }
@@ -43,7 +44,10 @@ public class ProsesorService {
     }
 
     public CatVigenciaDto obtenerVigencia(String producto){
-        return this.nivelRiesgoRepository.obtenerVigencia(producto);
+        return this.reporteCreditoRepository.obtenerVigencia(producto);
+    }
+    public boolean generarDiasVigencia(String idProdutoo){
+        return this.nivelRiesgoRepository.generarDiasVigencia(idProdutoo);
     }
 
 

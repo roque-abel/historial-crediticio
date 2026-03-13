@@ -5,8 +5,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProsesorRepository extends MongoRepository<ReporteCreditoEntity, String> {
+public interface ProsesorReporteCrediticioRepository extends MongoRepository<ReporteCreditoEntity, String> {
 
     ReporteCreditoEntity findByInformacionPersonalIdentificacionRfc(String rfc);
+
 
 }

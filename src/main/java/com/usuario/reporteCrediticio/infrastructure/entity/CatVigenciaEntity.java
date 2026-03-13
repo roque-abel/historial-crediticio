@@ -1,16 +1,14 @@
 package com.usuario.reporteCrediticio.infrastructure.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "cat-viencia")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CatVigenciaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

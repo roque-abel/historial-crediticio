@@ -28,6 +28,7 @@ import javax.lang.model.type.IntersectionType;
 import java.security.PrivateKey;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Component
@@ -312,6 +313,7 @@ public class Mapeo {
                 .informacionContacto(informacionContactoDto)
                 .fechaCreacion(reporteCreditoEntity.getFechaCreacion())
                 .fechaActualizacion(reporteCreditoEntity.getFechaActualizacion())
+                .idReporte(reporteCreditoEntity.getId())
                 .build();
     }
 
@@ -538,6 +540,15 @@ public class Mapeo {
         return CatVigenciaDto.builder()
                 .diasVigencia(catVigenciaEntity.getDiasVigencia())
                 .producto(catVigenciaEntity.getProducto())
+                .build();
+    }
+
+    public CatVigenciaEntity catVigenciaDtoToEntity(String idProducto){
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(30);
+        return CatVigenciaEntity.builder()
+                .producto(idProducto)
+                .diasVigencia(numeroAleatorio)
                 .build();
     }
 
