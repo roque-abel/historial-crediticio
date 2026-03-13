@@ -1,0 +1,16 @@
+package com.usuario.reporteCrediticio.Service.dto.reportecrediticio.reporteDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ResumenTipoCreditoDto {
+    private TarjetaCreditoDto tarjetaCredito;
+    private CreditoAutomotrizDto creditoAutomotriz;
+    private CreditoHipotecarioDto creditoHipotecario;
+}
