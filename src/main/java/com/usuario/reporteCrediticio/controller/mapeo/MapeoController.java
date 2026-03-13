@@ -11,6 +11,7 @@ import com.usuario.reporteCrediticio.controller.request.NombreRequest;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class MapeoController {
 
     public InformacionPersonalDto informacionPersonalRequestToDto(InformacionPersonalRequest inforRequest){

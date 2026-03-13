@@ -21,7 +21,7 @@ public class DireccionRequest {
     @NotBlank(message = "La colonia es obligatoria")
     @Size(max = 100, message = "La colonia no puede exceder 100 caracteres")
     private String colonia;
-    @NotNull(message = "El codigo postal eso obligatorio")
+    @NotNull(message = "El codigo postal es obligatorio")
     @Digits(integer = 5, fraction = 0, message = "El código postal debe tener 5 dígitos")
     private Integer codigoPostal;
     @NotBlank(message = "La ciudad debe ser obligatoria")

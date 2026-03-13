@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class InformacionPersonalRequest {
-    @NotNull(message = "El codigo postal eso obligatorio")
+    @NotNull(message = "El codigo postal es obligatorio")
     @Digits(integer = 9, fraction = 0, message = "El código postal debe tener 5 dígitos")
     private Integer id;
     private NombreRequest nombre;

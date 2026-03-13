@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -24,5 +25,9 @@ public class ReporteCreditoDto {
     private ResumenTipoCreditoDto resumenPorTipoCredito;
     private LeyendaDto leyendas;
     private InformacionContactoDto informacionContacto;
+    private Boolean estatus;
+    private String producto;
+    private Date fechaCreacion;
+    private Date fechaActualizacion;
 
 }

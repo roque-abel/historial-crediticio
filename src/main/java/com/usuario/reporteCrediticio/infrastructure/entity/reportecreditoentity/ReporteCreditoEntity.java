@@ -9,9 +9,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,18 +37,13 @@ public class ReporteCreditoEntity {
     private LeyendaEntity leyendas;
     private InformacionContactoEntity informacionContacto;
     private Boolean estatus;
-    private Date fechaActualizacion;
+    private String producto;
+
+    @CreatedDate
+    @Field("fecha_creacion")
     private Date fechaCreacion;
 
-    @PrePersist
-    protected void onCreate() {
-        Date now = new Date();
-        this.fechaCreacion = now;
-        this.fechaActualizacion = now;
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.fechaActualizacion = new Date();
-    }
+    @LastModifiedDate
+    @Field("fecha_actualizacion")
+    private Date fechaActualizacion;
 }

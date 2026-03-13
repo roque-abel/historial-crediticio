@@ -1,6 +1,8 @@
 package com.usuario.reporteCrediticio.infrastructure.dao;
 
+import com.usuario.reporteCrediticio.Service.dto.CatVigenciaDto;
 import com.usuario.reporteCrediticio.Service.dto.motordereglas.NivelRiesgoDto;
+import com.usuario.reporteCrediticio.infrastructure.entity.CatVigenciaEntity;
 import com.usuario.reporteCrediticio.infrastructure.entity.nivelriegoentity.NivelRiesgoEntity;
 import com.usuario.reporteCrediticio.infrastructure.entity.reportecreditoentity.ReporteCreditoEntity;
 import com.usuario.reporteCrediticio.infrastructure.mapeo.Mapeo;
@@ -35,5 +37,11 @@ public class DaoProsesorRepositoryJpa implements NivelRiesgoRepository {
             log.info("no se pudo guardar nivel de riesgo: {}", e.getMessage());
         }
         return  guardado;
+    }
+
+    @Override
+    public CatVigenciaDto obtenerVigencia(String producto) {
+        CatVigenciaEntity catVigenciaEntity = this.prosesorRepositoryJpa.findByProducto(producto);
+        return this.mapeo.catVigenciaEntity(catVigenciaEntity);
     }
 }
